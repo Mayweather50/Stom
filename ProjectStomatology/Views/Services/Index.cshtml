@@ -1,0 +1,79 @@
+﻿@*@{
+    ViewData["Title"] = "Загрузка файла Excel";
+}
+
+<h2>Загрузка файла Excel</h2>
+
+<form asp-controller="Services" asp-action="UploadExcel" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="excelFile">Выберите файл Excel:</label>
+        <input type="file" name="excelFile" id="excelFile" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Загрузить и обработать</button>
+</form>
+*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #sidebar {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 200px;
+            background-color: #f0f0f0;
+            overflow-y: auto;
+        }
+
+            #sidebar ul {
+                list-style-type: none;
+                padding: 0;
+            }
+
+                #sidebar ul li {
+                    padding: 10px;
+                }
+
+                    #sidebar ul li:hover {
+                        background-color: #ddd;
+                    }
+
+        #main {
+            margin-left: 200px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="toggleButton">Toggle Sidebar</button>
+
+    <div id="sidebar">
+        <ul>
+            <li>User 1</li>
+            <li>User 2</li>
+            <li>User 3</li>
+        </ul>
+    </div>
+
+    <div id="main">
+        <h2>Main Content</h2>
+        <p>Some text..</p>
+    </div>
+
+    <script>
+        document.getElementById("toggleButton").addEventListener("click", function () {
+            var sidebar = document.getElementById("sidebar");
+            if (sidebar.style.display === "none") {
+                sidebar.style.display = "block";
+            } else {
+                sidebar.style.display = "none";
+            }
+        });
+    </script>
+
+</body>
+</html>

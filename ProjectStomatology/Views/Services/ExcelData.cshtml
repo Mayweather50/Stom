@@ -1,0 +1,147 @@
+﻿@model List<Profile>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+        border: 2px solid #4CAF50;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+</style>
+@*<table>
+    <tr>
+        <th>Name</th>
+        <th>Code</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="border: 2px solid #4CAF50; padding:8px;">@item.Code</td>
+
+            <td style="border: 2px solid #4CAF50;padding:8px;">@item.Name</td>
+        </tr>
+    }
+</table>*@
+
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Code</td>
+                <td>@item.Name</td>
+                <td><button onclick="removeRow(this)">Close</button></td>
+
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<script>
+    function removeRow(button) {
+        var row = button.parentNode.parentNode;
+        row.remove();
+    }
+</script>
+
+
+
+@*<table>
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Code</td>
+                <td>@item.Name</td>
+                <td>
+                    <button onclick="removeRow(this)">Close</button>
+                    <button onclick="restoreRow(this)">Restore</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts{
+<script>
+    var deletedRows = [];
+
+    function removeRow(button) {
+        var row = button.parentNode.parentNode;
+        var rowIndex = row.rowIndex;
+        var rowData = Array.from(row.cells).map(cell => cell.innerHTML);
+
+        deletedRows.push({
+            index: rowIndex,
+            data: rowData
+        });
+
+        row.remove();
+    }
+
+    function restoreRow(button) {
+        var row = button.parentNode.parentNode;
+        var rowIndex = row.rowIndex;
+
+        var deletedRow = deletedRows.find(obj => obj.index === rowIndex);
+
+        if (deletedRow) {
+            var newRow = document.createElement('tr');
+            deletedRow.data.forEach(cellData => {
+                var newCell = document.createElement('td');
+                newCell.innerHTML = cellData;
+                newRow.appendChild(newCell);
+            });
+
+            row.parentNode.insertBefore(newRow, row.nextSibling);
+            deletedRows = deletedRows.filter(obj => obj.index !== rowIndex);
+        }
+    }
+</script>
+}*@
+
+
+

@@ -1,0 +1,84 @@
+﻿@model List<ProjectStomatology.Models.Rclient>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="~/css/index.css" />
+
+   
+
+    <title>Моя Верхняя Плашка</title>
+</head>
+<body>
+    <div class="header">
+        <ul class="nav">
+            <li>
+                <a href="#" id="#">
+                    <img src="~/images/calendar-mark-date-svgrepo-com.svg" width="26" height="26" alt="Иконка календаря"> Расписание
+                </a>
+            </li>
+
+
+            <li><a href="#" id="cash-link"><i class="fas fa-cash-register"></i> Касса за день</a></li>
+            @*            <li><a href="#"><i class="fas fa-user"></i> Пациенты</a></li>
+            *@
+            <li><a href="#" id="patients-link"><i class="fas fa-user"></i> <span style="color: white;">Пациенты</span></a></li>
+            <li><a href="#"><i class="fas fa-tools"></i> Услуги</a></li>
+            <li><a href="#"><i class="fas fa-users"></i> Сотрудники</a></li>
+            <li><a href="#"><i class="fas fa-chart-line"></i> Отчеты</a></li>
+        </ul>
+    </div>
+    <div id="content-container">
+        <!-- Здесь будет меняться контент -->
+    </div>
+
+
+</body>
+</html>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const patientsLink = document.getElementById("patients-link");
+        const cashLink = document.getElementById("cash-link");
+        const contentContainer = document.getElementById("content-container");
+
+        patientsLink.addEventListener("click", async function (event) {
+            event.preventDefault();
+
+            try {
+                const response = await fetch('@Url.Action("Patients", "Home")');
+                const data = await response.text();
+
+                // Устанавливаем контент в контейнер
+                contentContainer.innerHTML = data;
+
+            } catch (error) {
+                console.error("Error loading patients content:", error);
+            }
+        });
+
+        cashLink.addEventListener("click", async function (event) {
+            event.preventDefault();
+
+            try {
+                const response = await fetch('@Url.Action("Index", "Cash")');
+                const data = await response.text();
+
+                // Устанавливаем контент в контейнер
+                contentContainer.innerHTML = data;
+
+            } catch (error) {
+                console.error("Error loading cash content:", error);
+            }
+        });
+    });
+
+
+
+</script>

@@ -1,0 +1,129 @@
+﻿@model List<ProjectStomatology.Models.Rclient>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .table-container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 800px;
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #ffcc00;
+        color: #333;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #ffe6b3;
+    }
+
+
+
+    /* Стили по умолчанию */
+    .icon {
+        color: blue; /* Синий цвет по умолчанию */
+        cursor: pointer;
+        transition: color 0.3s; /* Плавное изменение цвета */
+    }
+
+        /* Стили для активной иконки (красный цвет) */
+        .icon.active {
+            color: red; /* Красный цвет при активации */
+        }
+
+</style>
+<title>Список клиентов</title>
+<body>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Фамилия</th>
+                    <th>Имя</th>
+                    <th>Отчество</th>
+                    <th>Пол</th>
+                    <th>Номер</th>
+                    <th>Эл.Почта</th>
+                    <th>Лечение</th>
+                    <th>Врач</th>
+                    <th>Оплата</th>
+                    <th>
+                        <a href="@Url.Action("Create", "Rclient")"><i class="fas fa-plus" style="font-size: 24px; color: #00ff32;"></i>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var patient in Model)
+                {
+                    <tr>
+                        <td>@patient.Surname</td>
+                        <td>@patient.Name</td>
+                        <td>@patient.Patronymic</td>
+                        <td>@patient.Sex</td>
+                        <td>@patient.PhoneNumber</td>
+                        <td>@patient.Email</td>
+                        <td>@patient.Treatment</td>
+                        <td>@patient.Dentist</td>
+                        <td>@patient.Payment</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Rclient", new { id = patient.Id })">
+                                <i class="fas fa-edit"></i>
+                            </a> <!-- Иконка редактирования -->
+                        </td>
+
+                        <td>
+                            <a href="@Url.Action("Delete", "Rclient", new { id = patient.Id })"><i class="fas fa-trash-alt"></i></a> <!-- Иконка удаления -->
+                        </td>
+                        <td>
+                            <i class="fas fa-check icon" style="cursor: pointer;" onclick="toggleIconColor(this)"></i>
+                        </td>
+
+
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+
+
+@section Script{
+    <script>
+        // JavaScript для изменения цвета при щелчке
+        function toggleIconColor(icon) {
+            icon.classList.toggle('active');
+        }
+    </script>
+}

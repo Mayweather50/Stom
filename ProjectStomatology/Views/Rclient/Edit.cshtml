@@ -1,0 +1,189 @@
+﻿@model ProjectStomatology.Models.Rclient
+@{
+    ViewBag.Title = "Редактирование пользователя";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование пациента</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .edit-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        .edit-header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #0073e6;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+            .form-input select {
+                appearance: none;
+                -webkit-appearance: none;
+                background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='12'%3E%3Cpath d='M14 0L7.857 6.143.784 0C.351-.392-.143-.2 0 .232l7.857 11.536a.738.738 0 001.107 0L16 .233c.144-.432-.351-.624-.783-.233z' fill='%230073e6'/%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: right 10px center;
+                background-size: 12px 12px;
+                padding-right: 30px;
+            }
+
+        .submit-btn {
+            background-color: #0073e6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .submit-btn:hover {
+                background-color: #005bb5;
+            }
+    </style>
+</head>
+<body>
+    <div class="edit-container">
+        <div class="edit-header">Редактирование пациента</div>
+        <form method="post">
+            <div class="form-group">
+                <label class="form-label">Фамилия</label>
+                <input class="form-input" type="text" name="Surname" value="@Model.Surname" />
+            </div>
+            <div class="form-group">
+                <label class="form-label">Имя</label>
+                <input class="form-input" type="text" name="Name" value="@Model.Name" />
+            </div>
+            <div class="form-group">
+                <label class="form-label">Отчество</label>
+                <input class="form-input" type="text" name="Patronymic" value="@Model.Patronymic" />
+            </div>
+            <div class="form-group">
+                <label class="form-label">Пол</label>
+                <select class="form-input" name="Sex">
+                    <option value="Мужской">Мужской</option>
+                    <option value="Женский">Женский</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Номер</label>
+                <input class="form-input" type="text" name="PhoneNumber" value="@Model.PhoneNumber" />
+            </div>
+            <div class="form-group">
+                <label class="form-label">Эл.Почта</label>
+                <input class="form-input" type="text" name="Email" value="@Model.Email" />
+            </div>    
+            <div class="form-group">
+                <label class="form-label">Лечение</label>
+                <input class="form-input" type="text" name="Email" value="@Model.Treatment" />
+            </div>
+            <div class="form-group">
+                <label class="form-label">Врач</label>
+                <input class="form-input" type="text" name="PolicyNumber" value="@Model.Dentist" />
+            </div>
+            <div class="form-group">
+                <label class="form-label">Оплата</label>
+                <input class="form-input" type="text" name="Snils" value="@Model.Payment" />
+            </div>
+           
+            <div class="form-group">
+                <button class="submit-btn" type="submit">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+@*<form asp-action="edit" asp-controller="Rclient" asp-route-id="@Model.Id">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Имя</label>
+        <input type="text" asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Surname" class="control-label">Фамилия</label>
+        <input type="text" asp-for="Surname" class="form-control" />
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="Patronymic" class="control-label">Отчество</label>
+        <input type="text" asp-for="Patronymic" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Sex" class="control-label">Пол</label>
+        <input type="text" asp-for="Sex" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PhoneNumber" class="control-label">Номер</label>
+        <input type="number" asp-for="PhoneNumber" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PolicyNumber" class="control-label">ПОЛИС</label>
+        <input type="number" asp-for="Surname" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Snils" class="control-label">СНИЛС</label>
+        <input type="number" asp-for="Snils" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PassportNumber" class="control-label">Номер</label>
+        <input type="number" asp-for="PassportNumber" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PassportSeria" class="control-label">Серия</label>
+        <input type="number" asp-for="PassportSeria" class="form-control" />
+    </div>
+
+
+
+
+    <div class="form-group">
+        <input type="submit" value="Сохранить" class="btn btn-default" />
+    </div>
+</form>*@

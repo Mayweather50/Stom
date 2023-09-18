@@ -1,0 +1,30 @@
+﻿@model IEnumerable<ProjectStomatology.Models.Rclient>
+@{
+    ViewBag.Title = "Все пользователи";
+}
+<a asp-action="Create">Добавить пользователя</a>
+<table class="table">
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Surname</td>
+            <td>@item.Patronymic</td>
+            <td>@item.Sex</td>
+            <td>@item.PhoneNumber</td>
+            <td>@item.Email</td>
+            <td>@item.PolicyNumber</td>
+            <td>@item.Snils</td>
+            <td>@item.PassportNumber</td>
+            <td>@item.PassportSeria</td>
+
+            <td>
+                <a asp-action="Details" asp-controller="Rclient" asp-route-id="@item.Id">Подробнее</a> |
+                <a asp-action="Edit" asp-controller="Rclient" asp-route-id="@item.Id">Изменить</a> |
+                <a asp-action="Delete" asp-controller="Rclient" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+    }
+</table>

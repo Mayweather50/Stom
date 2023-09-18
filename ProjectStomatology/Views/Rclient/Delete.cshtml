@@ -1,0 +1,60 @@
+﻿@model ProjectStomatology.Models.Rclient
+@{
+    ViewBag.Title = "Удаление пользователя";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+
+    /* Стили для красной кнопки */
+  .red-button {
+          background-color: #FF0000; /* Красный цвет фона кнопки */
+          color: white; /* Белый цвет текста кнопки */
+            border: none; /* Убираем границу кнопки */
+            padding: 10px 20px; /* Отступы внутри кнопки */
+            text-align: center; /* Выравниваем текст по центру */
+            text-decoration: none; /* Убираем подчеркивание ссылки */
+            font-size: 16px; /* Размер текста */
+            border-radius: 4px; /* Закругляем углы кнопки */
+            cursor: pointer; /* Изменяем вид курсора при наведении */
+  }
+
+            /* Стили для красной кнопки при наведении */
+  .red-button:hover {
+    background-color: #CC0000; /* Темно-красный цвет фона кнопки при наведении */
+
+  /* Стили для уведомления */
+  .notification {
+    background-color: #2196F3; /* Цвет фона уведомления */
+    color: white; /* Цвет текста уведомления */
+    padding: 15px; /* Отступы внутри уведомления */
+    text-align: center; /* Выравниваем текст по центру */
+    font-size: 18px; /* Размер текста */
+    border-radius: 8px; /* Закругляем углы уведомления */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень уведомления */
+    display: inline-block; /* Делаем уведомление инлайновым, чтобы оно подстраивалось по длине текста */
+  }
+</style>
+</head>
+<body>
+
+<!-- HTML элемент уведомления -->
+<div class="notification">
+  Вы действительно хотите удалить пользователя?
+</div>
+
+</body>
+</html>
+
+
+
+<div>
+    <form asp-controller="Rclient" asp-action="Delete" method="post">
+        <div class="form-group">
+            <input type="submit" class="red-button" value="Удалить" />
+        </div>
+    </form>
+</div>
